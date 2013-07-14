@@ -1,7 +1,7 @@
 {
-  "name": "backbone.ui.litenav",
+  "name": "backbone.ui.topanchor",
   "version": "0.2.0",
-  "main": ["./assets/js/backbone.ui.litenav.js"],
+  "main": ["./assets/js/backbone.ui.topanchor.js"],
   "dependencies": { 
 	  "backbone" : "0.9.10", 
 	  "underscore" : "1.4.4", 
