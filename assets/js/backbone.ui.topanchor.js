@@ -15,18 +15,18 @@
 	
 	Backbone.UI.Topanchor = View.extend({
 		
-		//el : '.ui-topanchor',
-		el: function(){ return $(this.options.parentEl) },
-
+		el: function(){ return $('<'+ this.options.tagName +' class="ui-topanchor '+ this.options.className +'">'+ this.options.text +'</'+ this.options.tagName +'>') },
+		
 		options : {
-			parentEl : "body",
-			// navEl : "nav", 
-			// mainEl : ".main"
+			scroll : true,
+			className : "",
+			tagName : "a",
+			text: "Back to top"
 		},
 		
 		events: {
 			"scroll" : "pageScroll",
-			"click .ui-topanchor" : "backToTop"
+			"click"  : "backToTop"
 		},
 		
 		pageScroll: function() {
@@ -34,9 +34,9 @@
 			
 			if ($(window).scrollTop() > scrollThreshold) {
 				
-				$(this.el).find('.ui-topanchor').addClass('ui-element-active');
+				$(this.el).addClass('ui-element-active');
 			} else {
-				$(this.el).find('.ui-topanchor').removeClass('ui-element-active');
+				$(this.el).removeClass('ui-element-active');
 			}
 		},
 		
@@ -45,6 +45,7 @@
 		},
 
 		initialize: function(model, options){
+			$(this.el).appendTo('body');
 			
 			_.bindAll(this, 'render', 'pageScroll'); 
 			
