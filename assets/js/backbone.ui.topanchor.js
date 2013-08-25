@@ -26,7 +26,7 @@
 		
 		events: {
 			"scroll" : "pageScroll",
-			"click .ui-topanchor-control" : "backToTop"
+			"click .ui-topanchor" : "backToTop"
 		},
 		
 		pageScroll: function() {
@@ -34,9 +34,9 @@
 			
 			if ($(window).scrollTop() > scrollThreshold) {
 				
-				$(this.el).find('.ui-topanchor-control').addClass('ui-element-active');
+				$(this.el).find('.ui-topanchor').addClass('ui-element-active');
 			} else {
-				$(this.el).find('.ui-topanchor-control').removeClass('ui-element-active');
+				$(this.el).find('.ui-topanchor').removeClass('ui-element-active');
 			}
 		},
 		
@@ -45,8 +45,6 @@
 		},
 
 		initialize: function(model, options){
-			
-			$( this.options.parentEl ).addClass('ui-topanchor');
 			
 			_.bindAll(this, 'render', 'pageScroll'); 
 			
