@@ -21,7 +21,8 @@
 			scroll : true,
 			className : "",
 			tagName : "a",
-			text: "Back to top"
+			text: "Back to top",
+			scrollOffset : 0
 		},
 		
 		events: {
@@ -29,10 +30,20 @@
 			"click"  : "backToTop"
 		},
 		
-		pageScroll: function() {
-			var scrollThreshold = $(window).height();
+		initialize: function(model, options){
+			$(this.el).appendTo('body');
 			
-			if ($(window).scrollTop() > scrollThreshold) {
+			_.bindAll(this, 'render', 'pageScroll'); 
+			
+			this.options.scrollOffset = ( this.options.scrollOffset ) ? this.options.scrollOffset : $(window).height() ;
+			
+			$(window).scroll(this.pageScroll);
+			
+		},
+		
+		pageScroll: function() {
+			
+			if ($(window).scrollTop() > this.options.scrollOffset) {
 				
 				$(this.el).addClass('ui-element-active');
 			} else {
@@ -44,15 +55,6 @@
 			$("html, body").animate({scrollTop: 0}, 1000);
 		},
 
-		initialize: function(model, options){
-			$(this.el).appendTo('body');
-			
-			_.bindAll(this, 'render', 'pageScroll'); 
-			
-			$(window).scroll(this.pageScroll);
-			
-			
-		},
 	});
 	
 })(this._, this.Backbone);
